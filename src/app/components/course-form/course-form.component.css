@@ -1,0 +1,38 @@
+.image-selection{
+  height: 80px;
+  cursor: pointer;
+  margin: 5px;
+  border: 2px solid transparent;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 35px;
+}
+img{
+  height: 50%;
+
+  
+}
+.image-selection img.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 10px #007bff;
+}
+.image-selection img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.image-selection img:hover {
+  transform: scale(1.03);
+}  
+.invalid-date {
+  border: 2px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+}

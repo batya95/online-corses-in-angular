@@ -1,0 +1,24 @@
+.starting-soon {
+  border: 2px solid #ff9800;
+  background-color: #fff3e0;
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+.course-details-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.course-details-content {
+  text-align: center;
+}
+
+.course-image {
+  max-width: 42%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}

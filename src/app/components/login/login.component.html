@@ -1,0 +1,10 @@
+<form (ngSubmit)="onSubmit()">
+  <input [(ngModel)]="username" name="username" placeholder="שם משתמש">
+  <input [(ngModel)]="password" name="password" type="password" placeholder="סיסמה">
+  <button type="submit">התחבר</button>
+</form>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+

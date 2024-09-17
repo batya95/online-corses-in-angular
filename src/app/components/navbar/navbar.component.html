@@ -1,0 +1,8 @@
+<mat-toolbar class="nav">
+  <a mat-button class="btn btn-outline" routerLink="/courses" routerLinkActive="active">קורסים</a>
+  <a mat-button class="btn btn-outline" routerLink="/add-course" *ngIf="isLoggedIn() && isLecturer()" routerLinkActive="active">הוסף קורס</a>
+  <span class="spacer"></span>
+  <a mat-button class="btn btn-primary" routerLink="/login" *ngIf="!isLoggedIn()" routerLinkActive="active">התחברות</a>
+  <a mat-button class="btn btn-secondary" routerLink="/register" *ngIf="!isLoggedIn()" routerLinkActive="active">הרשמה</a>
+  <button mat-button class="btn btn-primary" (click)="logout()" *ngIf="isLoggedIn()">התנתקות</button>
+</mat-toolbar>

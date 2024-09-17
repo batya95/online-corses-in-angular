@@ -1,0 +1,32 @@
+<div class="filter-container">
+
+  <input class="filter-input"  [(ngModel)]="nameFilter" (ngModelChange)="filterCourses()" placeholder="סנן לפי שם">
+  <select class="filter-input"  [(ngModel)]="categoryFilter" (ngModelChange)="filterCourses()">
+    <option value="">כל הקטגוריות</option>
+    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+  </select>
+  <select class="filter-input"  [(ngModel)]="learningModeFilter" (ngModelChange)="filterCourses()">
+    <option value="">כל אופני הלמידה</option>
+    <option value="Frontal">פרונטלי</option>
+    <option value="Zoom">זום</option>
+  </select>
+  <button class="filter-input" (click)="resetFilters()">איפוס סינון</button>
+</div>
+
+
+<div class="courses-grid">
+  <mat-card *ngFor="let course of filteredCourses" [ngClass]="{'starting-soon': isStartingSoon(course)}" class="course-item">
+    <mat-card-header>
+      <mat-card-title>{{course.name}}</mat-card-title>
+      <mat-card-subtitle>מספר שיעורים: {{course.lessonsCount}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="course.imagePath" [alt]="course.name">
+    <mat-card-content>
+    <p>{{course.description || 'אין תיאור זמין'}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+    <button mat-button  color="primary" (click)="navigateToCourse(course.id)">פרטים נוספים</button>
+  
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,60 @@
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+  <input formControlName="name" placeholder="שם הקורס">
+  
+  <label for="">קטגוריה: </label>
+  <select formControlName="categoryId" (ngModelChange)="onCategoryChange($event)">
+    <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+  </select>
+  
+  <label for="">כמות שיעורים: </label>
+  <input formControlName="lessonsCount" type="number" placeholder="מספר שיעורים">
+  
+  <div>
+    <label for="startDate">תאריך התחלה:</label>
+    <input id="startDate" type="date" formControlName="startDate" 
+           [ngClass]="{'invalid-date': courseForm.get('startDate')?.errors?.['pastDate']}">
+    <div *ngIf="courseForm.get('startDate')?.errors?.['pastDate']" class="error-message">
+      התאריך שנבחר כבר עבר. אנא בחר תאריך עתידי.
+    </div>
+  </div>
+  
+  <label for="">סיליבוס: </label>
+  <div formArrayName="syllabus">
+    <div *ngFor="let item of syllabusControls; let i = index">
+      <input [formControlName]="i" placeholder="נושא">
+      <button type="button" (click)="removeSyllabusItem(i)">הסר נושא</button>
+    </div>
+  </div>
+  <button type="button" (click)="addSyllabusItem()">הוסף נושא</button>
+  
+  <div>
+    <label for="lecturerId">מזהה מרצה:</label>
+    <input type="number" formControlName="lecturerId" [disabled]="true">
+  </div>
+  
+  <div>
+    <label for="learningMode">אופן למידה:</label>
+    <select formControlName="learningMode">
+      <option *ngFor="let mode of learningModes" [ngValue]="mode">{{mode | learningModeText}}</option>
+    </select>
+  </div>
+  
+  <textarea formControlName="description" placeholder="תיאור הקורס"></textarea>
+
+  <div class="image-selection">
+    <label for="">בחר תמונה</label>
+    <div *ngFor="let image of availableImages">
+      <img [src]="'assets/' + image" 
+           [alt]="image"
+           [class.selected]="courseForm.get('imagePath')?.value === 'assets/' + image"
+           (click)="onImageSelect(image)">
+    </div>
+  </div>
+  
+  
+
+  <button type="submit">{{ isEditMode ? 'שמור שינויים' : 'הוסף קורס' }}</button>
+  <button type="button" (click)="onCancel()">ביטול</button>
+</form>
+
+  

@@ -1,0 +1,52 @@
+<form *ngIf="course" (ngSubmit)="onSubmit()" #courseForm="ngForm">
+  <div>
+    <label for="name">שם הקורס:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="course.name" required>
+  </div>
+  <div>
+    <label for="categoryId">קטגוריה:</label>
+    <input type="number" id="categoryId" name="categoryId" [(ngModel)]="course.categoryId" required>
+  </div>
+  <div>
+    <label for="lessonsCount">מספר שיעורים:</label>
+    <input type="number" id="lessonsCount" name="lessonsCount" [(ngModel)]="course.lessonsCount" required>
+  </div>
+  <div>
+    <label for="startDate">תאריך התחלה:</label>
+    <input type="date" id="startDate" name="startDate" [(ngModel)]="course.startDate" required>
+  </div>
+  <div>
+    <label for="learningMode">אופן למידה:</label>
+    <select [(ngModel)]="course.learningMode" name="learningMode">
+      <option [value]="LearningMode.Frontal">פרונטלי</option>
+      <option [value]="LearningMode.Zoom">זום</option>
+    </select>
+  </div>
+  <div>
+    <label for="lecturerId">מזהה מרצה:</label>
+    <input type="number" id="lecturerId" name="lecturerId" [(ngModel)]="course.lecturerId" disabled>
+  </div>
+  <div>
+    <label for="imagePath">נתיב תמונה:</label>
+    <input type="text" id="imagePath" name="imagePath" [(ngModel)]="course.imagePath" required>
+  </div>
+  <div>
+    <label for="description">תיאור הקורס:</label>
+    <textarea id="description" name="description" [(ngModel)]="course.description" required></textarea>
+  </div>
+  <div>
+    <h3>סילבוס:</h3>
+    <div *ngFor="let item of syllabusItems; let i = index">
+
+      <textarea [(ngModel)]="syllabusItems[i]" (ngModelChange)="updateSyllabusItem(i)" [name]="'syllabus' + i" placeholder="נושא בסילבוס"></textarea>
+  
+  
+      <button type="button" class="btn btn-danger" (click)="removeSyllabusItem(i)">הסר נושא מהסיליבוס</button>
+    </div>
+    <br>
+    <button type="button" class="btn btn-info" (click)="addSyllabusItem()">הוסף נושא לסילבוס</button>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-success">הוסף קורס</button>
+</div>
+</form>

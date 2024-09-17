@@ -1,0 +1,60 @@
+<form *ngIf="course" (ngSubmit)="onSubmit()" #courseForm="ngForm">
+    <div>
+      <label for="name">שם הקורס:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="course.name" required>
+    </div>
+    <div>
+      <label for="categoryId">קטגוריה:</label>
+      <input type="number" id="categoryId" name="categoryId" [(ngModel)]="course.categoryId" required>
+    </div>
+    <div>
+      <label for="lessonsCount">מספר שיעורים:</label>
+      <input type="number" id="lessonsCount" name="lessonsCount" [(ngModel)]="course.lessonsCount" required>
+    </div>
+    <div>
+      <label for="startDate">תאריך התחלה:</label>
+      <input type="date" id="startDate" name="startDate" [(ngModel)]="course.startDate" required>
+    </div>
+    <div>
+      <label for="learningMode">אופן למידה:</label>
+      <select id="learningMode" name="learningMode" [(ngModel)]="course.learningMode" required>
+        <option *ngFor="let mode of learningModes" [value]="mode">{{mode}}</option>
+      </select>
+    </div>
+    <div>
+      <label for="lecturerId">מזהה מרצה:</label>
+      <input type="number" id="lecturerId" name="lecturerId" [(ngModel)]="course.lecturerId" disabled="">
+    </div>
+    <div>
+      <label>תמונה לקורס:</label>
+      <div class="image-grid">
+        <div *ngFor="let image of availableImages" 
+             class="image-item" 
+             [class.selected]="selectedImage === image"
+             (click)="selectImage(image)">
+          <img [src]="'assets/' + image" [alt]="image">
+        </div>
+      </div>
+      
+    </div>
+    <div>
+      <label for="description">תיאור הקורס:</label>
+      <textarea id="description" name="description" [(ngModel)]="course.description" required></textarea>
+    </div>
+    <div>
+      <h3>סילבוס:</h3>
+      <ul>
+        <li *ngFor="let item of course.syllabus || []; let i = index">
+            <input type="text" [(ngModel)]="course.syllabus[i]" [name]="'syllabus' + i">
+            <button type="button" (click)="removeSyllabusItem(i)">הסר</button>
+          </li>
+          
+      </ul>
+      <button type="button" (click)="addSyllabusItem()">הוסף פריט לסילבוס</button>
+    </div>
+    <button type="submit" >שמור שינויים</button>
+    <button (click)="onCancel()">בטל</button>
+
+  </form>
+  
+  

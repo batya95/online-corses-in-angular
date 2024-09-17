@@ -1,0 +1,15 @@
+ <form (ngSubmit)="onSubmit()">
+  <button  class="toCheckIsLecture" (click)="openLecturerCodeInput($event)">מרצה? לחץ להירשם כמרצה!</button>
+  <div *ngIf="showLecturerCodeInput">
+    <input [(ngModel)]="lecturerCode" class="code" name="lecturerCode" placeholder="הכנס קוד מרצה">
+    <button (click)="verifyLecturerCode($event)">אמת קוד</button>
+  </div>
+  <input [(ngModel)]="user.name" name="name" placeholder="שם" required>
+  <input [(ngModel)]="user.address" name="address" placeholder="כתובת" required>
+  <input [(ngModel)]="user.email" name="email" type="email" placeholder="אימייל" required>
+  <input [(ngModel)]="user.password" name="password" type="password" placeholder="סיסמא" required>
+ 
+
+  <button type="submit">הרשם</button>
+</form> 
+
